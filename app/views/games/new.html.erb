@@ -1,0 +1,21 @@
+<div class="w-50 d-flex-column align-items-center">
+  <h1 >New game</h1>
+  <ul class="list-unstyled d-flex justify-content-between">
+    <% @letters.each do |letter| %>
+    <li class="p-3 border bg-primary text-white font-weight-bold shadow"><%= letter %></li>
+    <% end %>
+  </ul>
+  <form action="/score" method="post" data-turbo="false">
+    <%# envoi l'authentification%>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <%# pour récupérer la liste des lettres proposées et l'utiliser ensuite dans score%>
+    <%= hidden_field_tag :letters, @letters %>
+    <div class="form-group w-50">
+      <label for="inputWord">What is the longest word you can find ?</label>
+      <div class="w-100 input-group">
+        <input type="text" class="form-control" name="word" id="inputWord" placeholder="Enter your proposition">
+        <button type="submit" class="btn btn-primary">Play</button>
+      </div>
+    </div>
+  </form>
+</div>
